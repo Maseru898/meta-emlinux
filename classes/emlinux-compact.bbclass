@@ -68,14 +68,14 @@ setup_make_compact_image() {
         sudo rm -fr "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_WORK_DIR}/"
     fi
 
-    sudo mkdir "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_WORK_DIR}/"
+    sudo mkdir -p "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_WORK_DIR}/"
     sudo mkdir -p "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_SETUP_SCRIPTS_DIR}/"
-    sudo mkdir "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}"
-    sudo mkdir "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/bin"
-    sudo mkdir "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/sbin"
-    sudo mkdir "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/usr"
-    sudo mkdir "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/usr/bin"
-    sudo mkdir "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/usr/sbin"
+    sudo mkdir -p "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}"
+    sudo mkdir -p "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/bin"
+    sudo mkdir -p "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/sbin"
+    sudo mkdir -p "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/usr"
+    sudo mkdir -p "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/usr/bin"
+    sudo mkdir -p "${ROOTFSDIR}/${EMLINUX_IMAGE_COMPACT_BUSYBOX_TMP_DIR}/usr/sbin"
 
     sudo -E chroot "${ROOTFSDIR}" \
         /usr/sbin/usermod -s /bin/sh root
@@ -121,7 +121,7 @@ EOL
 
     if [ "${EMLINUX_IMAGE_COMPACT_USE_SYSTEMD}" != "1" ]; then
         # Install AMA0 setting to inittab.d/
-        sudo mkdir ${ROOTFSDIR}/etc/inittab.d
+        sudo mkdir -p ${ROOTFSDIR}/etc/inittab.d
         sudo sh -c "echo 'AMA0:12345:respawn:/sbin/getty 115200 ttyAMA0' >> ${ROOTFSDIR}/etc/inittab.d/ama0.tab"
         sudo sh -c "echo 'S0:12345:respawn:/sbin/getty 115200 ttyS0' >> ${ROOTFSDIR}/etc/inittab.d/ttyS0.tab"
         sudo sh -c "echo 'S1:12345:respawn:/sbin/getty 115200 ttyS1' >> ${ROOTFSDIR}/etc/inittab.d/ttyS1.tab"
